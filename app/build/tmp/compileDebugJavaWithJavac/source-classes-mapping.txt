@@ -1,0 +1,2 @@
+com/wc/tictactoeapp/BuildConfig.java
+ com.wc.tictactoeapp.BuildConfig

@@ -4,7 +4,7 @@ A mobile application for Tic Tac Toe game which is developed using Android and K
 # Installation
 You can quickly install the android application in a mobile by downloading TicTacToeApp.apk from the following link.
 
-**Link :** https://github.com/2021-DEV-006/TicTacToe/blob/master/TicTacToeApp.apk
+**APK Link :** https://github.com/2021-DEV-006/TicTacToe/blob/master/TicTacToe.apk
 
 # Compile & Run 
 Clone the repository https://github.com/2021-DEV-006/TicTacToe.git 

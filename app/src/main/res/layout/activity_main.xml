@@ -29,6 +29,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
             <Button
@@ -39,6 +40,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:background="@color/purple_500"
                 android:textSize="@dimen/btn_text_size"
                 style="?android:attr/borderlessButtonStyle"/>
 
@@ -51,6 +53,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
@@ -72,6 +75,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
             <Button
@@ -83,6 +87,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
             <Button
@@ -94,6 +99,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
@@ -115,6 +121,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
             <Button
@@ -126,6 +133,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
             <Button
@@ -137,17 +145,18 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/btn_text_size"
+                android:background="@color/purple_500"
                 style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:padding="15dp"
         android:background="@color/teal_700"
         android:textSize="20sp"
@@ -158,12 +167,13 @@
         android:id="@+id/btnRestartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:textSize="20sp"
         android:text="@string/restart_game"
         android:layout_alignParentEnd="true"
+        android:background="@color/purple_500"
         style="?android:attr/borderlessButtonStyle"/>
 
 </RelativeLayout>

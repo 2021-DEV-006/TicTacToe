@@ -1,21 +1,24 @@
 package com.wc.tictactoeapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.wc.tictactoeapp.constants.Constants.Companion.combinationsToWin
+import com.wc.tictactoeapp.constants.Constants.Companion.gameDraw
+import com.wc.tictactoeapp.constants.Constants.Companion.playerO
+import com.wc.tictactoeapp.constants.Constants.Companion.playerOWin
+import com.wc.tictactoeapp.constants.Constants.Companion.playerX
+import com.wc.tictactoeapp.constants.Constants.Companion.playerXWin
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val playerX = "X"
-    private val playerO = "O"
-
-    private var currentOrNextPlayer = ""
-    var playerXList = arrayListOf<Int>()
-    var playerOList = arrayListOf<Int>()
+    var currentOrNextPlayer = ""
+    var playerXList = ArrayList<Int>()
+    var playerOList = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnCell8.setOnClickListener(this)
         btnCell9.setOnClickListener(this)
 
+        tvResult.text = getString(R.string.new_game)
+        val anim = AnimationUtils.loadAnimation(this, R.anim.blink)
+        tvResult.startAnimation(anim)
         btnRestartGame.setOnClickListener(this)
     }
 
@@ -47,21 +53,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell1, selectedPlayer)
-                    addSelectedCellInListforXO(1, selectedPlayer)
+                    addSelectedCellInListforPlayer(1, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell2 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell2, selectedPlayer)
-                    addSelectedCellInListforXO(2, selectedPlayer)
+                    addSelectedCellInListforPlayer(2, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell3 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell3, selectedPlayer)
-                    addSelectedCellInListforXO(3, selectedPlayer)
+                    addSelectedCellInListforPlayer(3, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
 
@@ -70,21 +79,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell4, selectedPlayer)
-                    addSelectedCellInListforXO(4, selectedPlayer)
+                    addSelectedCellInListforPlayer(4, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell5 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell5, selectedPlayer)
-                    addSelectedCellInListforXO(5, selectedPlayer)
+                    addSelectedCellInListforPlayer(5, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell6 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell6, selectedPlayer)
-                    addSelectedCellInListforXO(6, selectedPlayer)
+                    addSelectedCellInListforPlayer(6, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
 
@@ -93,30 +105,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell7, selectedPlayer)
-                    addSelectedCellInListforXO(7, selectedPlayer)
+                    addSelectedCellInListforPlayer(7, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell8 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell8, selectedPlayer)
-                    addSelectedCellInListforXO(8, selectedPlayer)
+                    addSelectedCellInListforPlayer(8, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
             btnCell9 -> {
                 val selectedPlayer = getPlayer(currentOrNextPlayer)
                 if (selectedPlayer != null) {
                     setTextAndColorForBtn(btnCell9, selectedPlayer)
-                    addSelectedCellInListforXO(9, selectedPlayer)
+                    addSelectedCellInListforPlayer(9, selectedPlayer)
+                    checkCurrentGameStatus()
                 }
             }
-
         }
     }
 
     fun getPlayer(player: String): String? {
         var currentPlayer: String? = null
         // First move in the game or player X
+
         if (player.isBlank() || player == playerX) {
             currentPlayer = playerX
         }
@@ -126,7 +141,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return currentPlayer
     }
 
-    fun addSelectedCellInListforXO(cellId: Int, selectedPlayer: String) {
+    fun addSelectedCellInListforPlayer(cellId: Int, selectedPlayer: String) {
         currentOrNextPlayer = if (selectedPlayer == playerX) {
             playerXList.add(cellId)
             // setting next player to O
@@ -136,6 +151,55 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // setting next player to X
             playerX
         }
+    }
+
+   private fun checkCurrentGameStatus() {
+        // Check current game status for Win/Draw/Game Continues
+        val gameStatus = checkGameStatus(this.currentOrNextPlayer)
+
+        if (gameStatus != null) {
+            when (gameStatus) {
+                playerXWin -> showPlayerXWins()
+                playerOWin -> showPlayerOWins()
+                gameDraw -> showGameIsDraw()
+                // game continues
+                else -> startNextPlayerTurn(gameStatus)
+            }
+        }
+    }
+
+    fun checkGameStatus(nextPlayer: String): String? {
+        when {
+            combinationsToWin.any { playerXList.containsAll(it) } -> return playerXWin
+            combinationsToWin.any { playerOList.containsAll(it) } -> return playerOWin
+            playerXList.size + playerOList.size == 9 -> {
+                return gameDraw
+            }
+        }
+        // game continues
+        return nextPlayer
+    }
+
+    private fun showPlayerXWins() {
+        setAllButtonsEnabled(false)
+        updateCurrentStatusInResult(getString(R.string.player_x_wins))
+    }
+
+    private fun showPlayerOWins() {
+        setAllButtonsEnabled(false)
+        updateCurrentStatusInResult(getString(R.string.player_o_wins))
+    }
+
+    private fun showGameIsDraw() {
+        updateCurrentStatusInResult(getString(R.string.game_draw))
+    }
+
+    private fun startNextPlayerTurn(nextPlayer: String) {
+        updateCurrentStatusInResult("Player $nextPlayer has to play now")
+    }
+
+    private fun updateCurrentStatusInResult(result : String) {
+        tvResult.text = result
     }
 
     private fun setTextAndColorForBtn(btnCell: Button, player: String) {
@@ -184,8 +248,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // setting all the buttons to clickable
         setAllButtonsEnabled(true)
 
-        tv_result.text = getString(R.string.new_game)
+        tvResult.text = getString(R.string.new_game)
     }
-
-
 }

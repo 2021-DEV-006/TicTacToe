@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/blue_grey"
@@ -8,7 +7,7 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:id="@+id/btn_layout"
+        android:id="@+id/game_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -29,7 +28,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell2"
@@ -39,7 +39,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell3"
@@ -49,7 +50,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
 
@@ -69,7 +71,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell5"
@@ -79,7 +82,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell6"
@@ -89,7 +93,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
 
@@ -109,7 +114,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell8"
@@ -119,7 +125,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                 android:id="@+id/btnCell9"
@@ -129,7 +136,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/btn_text_size"
+                style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
     </RelativeLayout>
@@ -141,20 +149,21 @@
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:padding="15dp"
-        android:text="result"
         android:background="@color/teal_700"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_restart_game"
+        android:id="@+id/btnRestartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
-        android:textSize="20dp"
-        android:text="Restart Game" />
+        android:textSize="20sp"
+        android:text="@string/restart_game"
+        android:layout_alignParentEnd="true"
+        style="?android:attr/borderlessButtonStyle"/>
 
 </RelativeLayout>
